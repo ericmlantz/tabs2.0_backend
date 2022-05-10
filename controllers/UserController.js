@@ -1,16 +1,17 @@
 const { User } = require('../models')
 const middleware = require('../middleware')
 
-const CreateUser = async (req, res) => {
+
+const RegisterUser = async (req, res) => {
   try {
-    const users = req.body
-    const newUser = await User.create(users)
-    if (newUser) {
-      return res.status(201).send(newUser)
-    }
-    res
-      .status(404)
-      .send({ msg: 'User not created. Please verify the info given and try again' })
+    const { name, email, password } = req.body
+    let passwordDigest = await middleware.hashPassword(password)
+    const newUser = await User.create({
+      name,
+      email,
+      passwordDigest 
+    })
+    res.send(newUser)
   } catch (error) {
     throw error
   }
@@ -58,7 +59,7 @@ const UpdateUser = async (req, res) => {
   }
 }
 
-const DeletePage = async (req, res) => {
+const DeleteUser = async (req, res) => {
   try {
     const pk = req.params.pk
     const user = await User.findByPk(pk)
@@ -69,17 +70,6 @@ const DeletePage = async (req, res) => {
       return res.status(200).send(`User: ${user.name} is deleted`)
     }
     res.status(204).send({ msg: 'Did not find any Users to delete' })
-  } catch (error) {
-    throw error
-  }
-}
-
-const Register = async (req, res) => {
-  try {
-    const { name, email, password } = req.body
-    let passwordDigest = await middleware.hashPassword(password)
-    const user = await User.create({ name, email, passwordDigest })
-    res.send(user)
   } catch (error) {
     throw error
   }
@@ -108,15 +98,17 @@ const Login = async (req, res) => {
   }
 }
 
+const CheckSession = async (req, res) => {
+  const { payload } = res.locals
+  res.send(payload)
+}
+
 module.exports = {
   Login,
-  Register,
-
-  CreateUser,
+  RegisterUser,
   GetAllUsers,
   GetUserByPk,
   UpdateUser,
-  DeletePage,
-
-
+  DeleteUser,
+  CheckSession,
 }
