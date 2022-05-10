@@ -3,8 +3,8 @@ const { Page } = require('../models')
 
 const CreatePage = async (req, res) => {
   try {
-    const pages = req.body
-    const newPage = await Page.create(pages)
+    const page = req.body
+    const newPage = await Page.create(page)
     if (newPage) {
       return res.status(201).send(newPage)
     }
