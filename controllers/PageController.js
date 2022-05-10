@@ -66,7 +66,7 @@ const DeletePage = async (req, res) => {
       where: { id: pk }
     })
     if (page) {
-      return res.status(200).send(`Page: ${page.topic} is deleted`)
+      return res.status(200).send(`Page: ${page.title} is deleted`)
     }
     res.status(204).send({ msg: 'Did not find any Pages to delete' })
   } catch (error) {

@@ -1,6 +1,78 @@
 const { User } = require('../models')
 const middleware = require('../middleware')
 
+const CreateUser = async (req, res) => {
+  try {
+    const users = req.body
+    const newUser = await User.create(users)
+    if (newUser) {
+      return res.status(201).send(newUser)
+    }
+    res
+      .status(404)
+      .send({ msg: 'User not created. Please verify the info given and try again' })
+  } catch (error) {
+    throw error
+  }
+}
+
+const GetAllUsers = async (req,res) => {
+  try {
+    const users = await User.findAll()
+    if (users) {
+      return res.status(200).send(users)
+    }
+    res.status(404).send({ msg: 'No users found' })
+  } catch (error) {
+    throw error
+  }
+}
+
+const GetUserByPk = async (req, res) => {
+  try {
+    const pk = req.params.pk
+    const user = await User.findByPk(pk)
+    if (user) {
+      return res.status(200).send(user)
+    }
+    res.status(404).send({ msg: 'No user found' })
+  } catch (error) {
+    throw error
+  }
+}
+
+const UpdateUser = async (req, res) => {
+  try {
+    const pk = req.params.pk
+    const update = req.body
+    const updatePage = await User.update(update, {
+      where: { id: pk },
+      returning: true
+    })
+    if (updateUser) {
+      return res.status(200).send(updateUser)
+    }
+    res.status(204).send('Cannot update user at this time.')
+  } catch (error) {
+    throw error
+  }
+}
+
+const DeletePage = async (req, res) => {
+  try {
+    const pk = req.params.pk
+    const user = await User.findByPk(pk)
+    await User.destroy({
+      where: { id: pk }
+    })
+    if (user) {
+      return res.status(200).send(`User: ${user.name} is deleted`)
+    }
+    res.status(204).send({ msg: 'Did not find any Users to delete' })
+  } catch (error) {
+    throw error
+  }
+}
 
 const Register = async (req, res) => {
   try {
@@ -39,4 +111,12 @@ const Login = async (req, res) => {
 module.exports = {
   Login,
   Register,
+
+  CreateUser,
+  GetAllUsers,
+  GetUserByPk,
+  UpdateUser,
+  DeletePage,
+
+
 }
