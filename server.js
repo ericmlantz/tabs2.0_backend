@@ -5,6 +5,7 @@ const logger = require('morgan')
 const UserRouter = require('./routes/UserRouter')
 const InterestRouter = require('./routes/InterestRouter')
 const PageRouter = require('./routes/PageRouter')
+const SearchRouter = require('./routes/SearchRouter')
 
 const PORT = process.env.PORT || 3001
 const app = express()
@@ -16,6 +17,7 @@ app.use(logger('dev'))
 app.use('/users', UserRouter)
 app.use('/interests', InterestRouter)
 app.use('/pages', PageRouter)
+app.use('/searches', SearchRouter)
 
 
 app.listen(PORT, () => console.log(`Server Started On Port: ${PORT}`))
