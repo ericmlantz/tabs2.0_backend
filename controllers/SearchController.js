@@ -16,7 +16,7 @@ const CreateSearch = async (req, res) => {
   }
 }
 
-const GetAllSearch = async (req,res) => {
+const GetAllSearches = async (req,res) => {
   try {
     const searches = await Search.findAll()
     if (searches) {
@@ -76,7 +76,7 @@ const DeleteSearch = async (req, res) => {
 
 module.exports = {
   CreateSearch,
-  GetAllSearch,
+  GetAllSearches,
   GetSearchByPk,
   UpdateSearch,
   DeleteSearch,
