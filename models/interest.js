@@ -11,12 +11,13 @@ module.exports = (sequelize, DataTypes) => {
       Interest.belongsTo(models.User, { as: 'interestsOfUsers', foreignKey: 'userId'})
       
       Interest.hasMany(models.Page, { as: 'interestsPages', foreignKey: 'interestId'})
+
+      Interest.hasMany(models.Search, { as: 'interestsSearches', foreignKey: 'interestId'})
     }
   }
   Interest.init({
     topic: DataTypes.STRING,
     description: DataTypes.STRING,
-    searches: DataTypes.ARRAY(DataTypes.JSONB),
     userId: {
       type: DataTypes.INTEGER,
       references: {

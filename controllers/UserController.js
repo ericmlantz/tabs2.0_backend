@@ -9,7 +9,7 @@ const RegisterUser = async (req, res) => {
     const newUser = await User.create({
       name,
       email,
-      passwordDigest 
+      passwordDigest
     })
     res.send(newUser)
   } catch (error) {
@@ -46,7 +46,7 @@ const UpdateUser = async (req, res) => {
   try {
     const pk = req.params.pk
     const update = req.body
-    const updatePage = await User.update(update, {
+    const updateUser = await User.update(update, {
       where: { id: pk },
       returning: true
     })
@@ -87,7 +87,8 @@ const Login = async (req, res) => {
     ) {
       let payload = {
         id: user.id,
-        email: user.email
+        email: user.email,
+        name: user.name
       }
       let token = middleware.createToken(payload)
       return res.send({ user: payload, token })

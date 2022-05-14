@@ -3,18 +3,20 @@ const controller = require('../controllers/UserController')
 const middleware = require('../middleware')
 
 router.post('/register', controller.RegisterUser)  //CREATE USER
-router.post('/login', controller.Login)
+router.post('/login', controller.Login)     //LOGIN USER
 
 router.get('/all', controller.GetAllUsers)    //GET ALL USERS
-router.get('/:pk', controller.GetUserByPk)        //GET USER BY PK
+
 router.put('update/:pk', controller.UpdateUser)     //UPDATE A USER
 router.delete('/delete/:pk', controller.DeleteUser) //DELETE A USER
 
-router.put(
-  '/profile',
+router.get(
+  '/session',
   middleware.stripToken,
   middleware.verifyToken,
   controller.CheckSession,
 )
+
+router.get('/:pk', controller.GetUserByPk)        //GET USER BY PK
 
 module.exports = router

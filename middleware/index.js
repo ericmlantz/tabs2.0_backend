@@ -49,6 +49,7 @@ const stripToken = (req, res, next) => {
     // Splits the value of the authorization header
     if (token) {
       res.locals.token = token
+      console.log(res.locals)
       //   If the token exists we add it to the request lifecycle state
       return next()
     }
