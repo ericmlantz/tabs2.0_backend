@@ -14,7 +14,6 @@ module.exports = (sequelize, DataTypes) => {
   Page.init({
     title: DataTypes.STRING,
     url: DataTypes.STRING,
-    preview: DataTypes.STRING,
     interestId: {
       type: DataTypes.INTEGER,
       references: {

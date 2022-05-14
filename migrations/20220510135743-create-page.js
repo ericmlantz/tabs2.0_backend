@@ -14,9 +14,6 @@ module.exports = {
       url: {
         type: Sequelize.STRING
       },
-      preview: {
-        type: Sequelize.STRING
-      },
       interestId: {
         type: Sequelize.INTEGER,
         references: {
