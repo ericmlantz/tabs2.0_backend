@@ -15,7 +15,7 @@ module.exports = (sequelize, DataTypes) => {
     title: DataTypes.STRING,
     url: DataTypes.STRING,
     preview: DataTypes.STRING,
-    notes: DataTypes.ARRAY(DataTypes.TEXT),
+    notes: DataTypes.ARRAY(DataTypes.JSONB),
     interestId: {
       type: DataTypes.INTEGER,
       references: {

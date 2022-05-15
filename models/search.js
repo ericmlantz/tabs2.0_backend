@@ -10,13 +10,13 @@ module.exports = (sequelize, DataTypes) => {
      * The `models/index` file will call this method automatically.
      */
     static associate(models) {
-      Search.belongsTo(models.Page, { as: 'notesOfPages', foreignKey: 'pagesId'})
+      Search.belongsTo(models.Interest, { as: 'searchesOfInterests', foreignKey: 'interestId'})
     }
   }
   Search.init({
     noteName: DataTypes.STRING,
     noteBody: DataTypes.TEXT,
-
+    noteUrl: DataTypes.TEXT,
     interestId: {
       type: DataTypes.INTEGER,
       references: {

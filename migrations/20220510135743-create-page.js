@@ -15,7 +15,7 @@ module.exports = {
         type: Sequelize.STRING
       },
       notes: {
-        type: Sequelize.ARRAY(Sequelize.TEXT),
+        type: Sequelize.ARRAY(Sequelize.JSONB),
       },
       interestId: {
         type: Sequelize.INTEGER,
