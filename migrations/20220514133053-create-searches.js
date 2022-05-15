@@ -17,6 +17,13 @@ module.exports = {
       noteUrl: {
         type: Sequelize.TEXT
       },
+      pageId: {
+        type: Sequelize.INTEGER,
+        references: {
+          model: 'pages',
+          key: 'id'
+        }
+      },
       interestId: {
         type: Sequelize.INTEGER,
         references: {

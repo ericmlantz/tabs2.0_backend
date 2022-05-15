@@ -9,12 +9,13 @@ module.exports = (sequelize, DataTypes) => {
      */
     static associate(models) {
       Page.belongsTo(models.Interest, { as: 'pagesOfInterests', foreignKey: 'interestId'})
+      Page.hasMany(models.Search, { as: 'PagesOfNotes', foreignKey: 'pageId'})
     }
   }
   Page.init({
     title: DataTypes.STRING,
     url: DataTypes.STRING,
-    notes: DataTypes.ARRAY(DataTypes.JSONB),
+    notes: DataTypes.ARRAY(DataTypes.STRING),
     interestId: {
       type: DataTypes.INTEGER,
       references: {

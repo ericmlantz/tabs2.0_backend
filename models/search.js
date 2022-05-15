@@ -11,12 +11,20 @@ module.exports = (sequelize, DataTypes) => {
      */
     static associate(models) {
       Search.belongsTo(models.Interest, { as: 'searchesOfInterests', foreignKey: 'interestId'})
+      Search.belongsTo(models.Page, { as: 'NotesOfpages', foreignKey: 'pageId'})
     }
   }
   Search.init({
     noteName: DataTypes.STRING,
     noteBody: DataTypes.TEXT,
     noteUrl: DataTypes.TEXT,
+    pageId: {
+      type: DataTypes.INTEGER,
+      references: {
+        model: 'pages',
+        key: 'id'
+      }
+    },
     interestId: {
       type: DataTypes.INTEGER,
       references: {
