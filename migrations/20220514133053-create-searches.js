@@ -8,10 +8,13 @@ module.exports = {
         primaryKey: true,
         type: Sequelize.INTEGER
       },
-      searchName: {
+      noteName: {
         type: Sequelize.STRING
       },
-      query: {
+      noteBody: {
+        type: Sequelize.TEXT
+      },
+      noteUrl: {
         type: Sequelize.TEXT
       },
       interestId: {

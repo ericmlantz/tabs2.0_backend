@@ -14,12 +14,11 @@ module.exports = (sequelize, DataTypes) => {
   Page.init({
     title: DataTypes.STRING,
     url: DataTypes.STRING,
-    preview: DataTypes.STRING,
     notes: DataTypes.ARRAY(DataTypes.JSONB),
     interestId: {
       type: DataTypes.INTEGER,
       references: {
-        model: 'interest',
+        model: 'interests',
         key: 'id'
       }
     }

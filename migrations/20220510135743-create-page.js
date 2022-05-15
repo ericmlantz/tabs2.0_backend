@@ -16,6 +16,7 @@ module.exports = {
       },
       notes: {
         type: Sequelize.ARRAY(Sequelize.JSONB),
+        allowNull: true,
       },
       interestId: {
         type: Sequelize.INTEGER,

@@ -24,6 +24,7 @@ module.exports = (sequelize, DataTypes) => {
         model: 'users',
         key: 'id'
       }
+
     }
   }, {
     sequelize,
