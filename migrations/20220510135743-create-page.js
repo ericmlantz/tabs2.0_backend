@@ -14,6 +14,9 @@ module.exports = {
       url: {
         type: Sequelize.STRING
       },
+      notes: {
+        type: Sequelize.ARRAY(Sequelize.TEXT),
+      },
       interestId: {
         type: Sequelize.INTEGER,
         references: {
