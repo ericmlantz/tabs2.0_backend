@@ -7,7 +7,7 @@ router.post('/login', controller.Login)     //LOGIN USER
 
 router.get('/all', controller.GetAllUsers)    //GET ALL USERS
 
-router.put('update/:pk', controller.UpdateUser)     //UPDATE A USER
+router.put('/update/:pk', controller.UpdateUser)     //UPDATE A USER
 router.delete('/delete/:pk', controller.DeleteUser) //DELETE A USER
 
 router.get(
